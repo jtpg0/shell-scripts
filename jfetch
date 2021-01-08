@@ -1,0 +1,30 @@
+#!/bin/bash
+HOSTNAME=`uname -n`
+OS=`printf $(lsb_release -si) && printf " "$(uname -s)"\n"`
+KRNL=`uname -rs`
+ARCH=`uname -m` #btw
+MEM1=`free -t -m | grep Total | awk '{print $3" MB";}'`
+MEM2=`free -t -m | grep "Mem" | awk '{print $2" MB";}'`
+
+if [ -f /usr/bin/apt ]; then
+PKGS=`apt list --installed | wc -l`
+elif [ -f /usr/bin/pacman ]; then
+PKGS=`pacman -Q | wc -l`
+elif [ -f /usr/bin/emerge ]; then
+RETVRN=`pwd`
+PKGS=`cd /var/db/pkg/ && ls -d */* | wc -l`
+cd ${RETVRN}
+elif [ -f /usr/bin/dnf ]; then
+PKGS=`dnf list installed | wc -l`
+fi
+echo ",-=======================================-,
+ -=`whoami`@$HOSTNAME=-
+
+ - OS..........: ${OS}
+ - Kernel......: ${KRNL}
+ - Architecture: ${ARCH}
+ - RAM Usage...: ${MEM1} / ${MEM2}
+ - Packages....: ${PKGS}
+ - Up Since....: `uptime -s`
+
+'-=======================================-'"

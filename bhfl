@@ -1,0 +1,30 @@
+#!/bin/bash
+cat << EOF
+ ,       
+  -   -          _       _      ___   _
+-  -   - -aaaa  | |___  | |__  |  _; | |
+   -  -  AA@A@  |  __ | |  _ | |  _; | |_
+-       -AAAAA  |_____| |_; ;| |_|   |___|
+   -   -  OOO      ___
+  -     VdddddV===;"--'  -    -
+     -// dLNXd
+- -  // -ddddd
+   -// - ddddd
+     -  -|| ||
+   -  - // -// 
+ - . ;='  ;=' 
+  ,    ,  . 
+,, . .
+  
+,--------------------------,
+|press ^C to stop bhopping.|
+'--------------------------'
+EOF
+
+sleep 2;
+while true
+do
+sleep 0.1;
+xdotool key space
+#; xdotool keydown Control_L; sleep 0.1; xdotool keyup Control_L
+done
